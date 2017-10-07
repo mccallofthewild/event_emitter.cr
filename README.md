@@ -130,7 +130,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   event_emitter:
-    github: hugoabonizio/event_emitter.cr
+    github: mccallofthewild/event_emitter.cr
 ```
 
 
@@ -145,3 +145,4 @@ dependencies:
 ## Contributors
 
 - [hugoabonizio](https://github.com/hugoabonizio) Hugo Abonizio - creator, maintainer
+- [mccallofthewild](https://github.com/mccallofthewild) McCall Alexander - customizer, maintainer
