@@ -1,5 +1,5 @@
 module EventEmitter
-  class Base
+  class Base(EventType)
     # TODO make recursive types work
     alias Any = Nil |
                 Bool |
@@ -11,7 +11,7 @@ module EventEmitter
                 String
     # Array(Any) |
     # Hash(String, Any)
-    @channels = Hash(Symbol, Array(Channel::Unbuffered(Any))).new
+    @channels = Hash(EventType, Array(Channel::Unbuffered(Any))).new
 
     def on(event, block : T ->) forall T
       channel = Channel::Unbuffered(Any).new

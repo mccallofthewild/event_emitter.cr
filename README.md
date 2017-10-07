@@ -96,7 +96,7 @@ The class ```EventEmitter::Base``` provides the methods ```on```, ```once``` and
 You can inherit from ```EventEmitter::Base``` class to add custom functionality (```class MyEmitter < EventEmitter::Base; end```) or simply create an instance of ```EventEmitter::Base``` as the following example.
 
 ```crystal
-emitter = EventEmitter::Base.new
+emitter = EventEmitter::Base(Symbol).new
 emitter.on :message, ->(body : EventEmitter::Base::Any) do
   puts "> #{body}"
 end
@@ -109,7 +109,7 @@ end
 Handling events only once:
 
 ```crystal
-emitter = EventEmitter::Base.new
+emitter = EventEmitter::Base(Symbol).new
 flag = 1
 emitter.once :trigger do
   flag = 2
