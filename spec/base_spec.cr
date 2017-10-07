@@ -81,5 +81,19 @@ describe EventEmitter::Base do
     flag.should eq(2)
   end
 
+  it "emits event without listener" do  
+    emitter = EventEmitter::Base(String).new
+    flag = 1
+    emitter.on "event" do
+      flag = 2
+    end
+
+    sleep 100.milliseconds
+
+    emitter.emit Random.rand.to_s
+    
+    flag.should eq 1
+  end
+
 
 end

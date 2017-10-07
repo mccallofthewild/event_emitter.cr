@@ -2,7 +2,8 @@
 
 
 ## This is a Generically typed version of [@hugoabonizio](https://github.com/hugoabonizio)'s [Event Emitter](https://github.com/hugoabonizio/event_emitter.cr). 
-> As of yet, only `EventEmitter::Base` is Generically typed.
+> As of yet, only `EventEmitter::Base` has been converted to a Generic type.
+> This fork may move into an independent repository as it grows. I forked because I needed a way to dynamically emit events, and Crystal `Symbol`'s can't be dynamically instantiated.
 
 [![Build Status](https://travis-ci.org/hugoabonizio/event_emitter.cr.svg?branch=master)](https://travis-ci.org/hugoabonizio/event_emitter.cr)
 

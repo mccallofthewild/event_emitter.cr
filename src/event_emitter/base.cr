@@ -11,7 +11,7 @@ module EventEmitter
                 String
     # Array(Any) |
     # Hash(String, Any)
-    @channels = Hash(EventType, Array(Channel::Unbuffered(Any))).new
+    @channels = Hash( EventType, Array(Channel::Unbuffered(Any)) ).new default_value: Array(Channel::Unbuffered(Any)).new
 
     def on(event, block : T ->) forall T
       channel = Channel::Unbuffered(Any).new
