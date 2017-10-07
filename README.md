@@ -35,7 +35,7 @@ emitter.connect("Hugo")
 Another approach is to inherit from ```EventEmitter::Base``` class, as the example above:
 
 ```crystal
-class MyEmitter < EventEmitter::Base; end
+class MyEmitter < EventEmitter::Base(Symbol, String); end
 
 my = MyEmitter.new
 my.on :event, ->(name : EventEmitter::Base::Any) do
@@ -101,7 +101,7 @@ The class ```EventEmitter::Base``` provides the methods ```on```, ```once``` and
 You can inherit from ```EventEmitter::Base``` class to add custom functionality (```class MyEmitter < EventEmitter::Base; end```) or simply create an instance of ```EventEmitter::Base``` as the following example.
 
 ```crystal
-emitter = EventEmitter::Base(Symbol).new
+emitter = EventEmitter::Base(Symbol, String).new
 emitter.on :message, ->(body : EventEmitter::Base::Any) do
   puts "> #{body}"
 end
@@ -114,7 +114,7 @@ end
 Handling events only once:
 
 ```crystal
-emitter = EventEmitter::Base(Symbol).new
+emitter = EventEmitter::Base(Symbol, String).new
 flag = 1
 emitter.once :trigger do
   flag = 2

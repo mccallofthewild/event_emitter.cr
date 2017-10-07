@@ -2,7 +2,7 @@ require "./spec_helper"
 
 describe EventEmitter::Base do
   it "executes one listener" do
-    emitter = EventEmitter::Base(Symbol).new
+    emitter = EventEmitter::Base(Symbol, Nil).new
     flag = 1
     emitter.on :event do
       flag = 2
@@ -15,7 +15,7 @@ describe EventEmitter::Base do
   end
 
   it "executes more than one listeners" do
-    emitter = EventEmitter::Base(Symbol).new
+    emitter = EventEmitter::Base(Symbol, Nil).new
     flag1 = flag2 = 1
 
     emitter.on :event do
@@ -36,7 +36,7 @@ describe EventEmitter::Base do
   end
 
   it "accepts primitive types" do
-    emitter = EventEmitter::Base(Symbol).new
+    emitter = EventEmitter::Base(Symbol, EventEmitter::Base::Any).new
     flag_int = 1
     flag_string = ""
     flag_bool = false
@@ -56,7 +56,7 @@ describe EventEmitter::Base do
   end
 
   it "executes once" do
-    emitter = EventEmitter::Base(Symbol).new
+    emitter = EventEmitter::Base(Symbol, Nil).new
     flag = 1
     emitter.once :trigger do
       flag = 2
@@ -69,7 +69,7 @@ describe EventEmitter::Base do
   end
 
   it "executes one listener with `String`" do  
-    emitter = EventEmitter::Base(String).new
+    emitter = EventEmitter::Base(String, Nil).new
     flag = 1
     emitter.on "event" do
       flag = 2
@@ -82,7 +82,7 @@ describe EventEmitter::Base do
   end
 
   it "emits event without listener" do  
-    emitter = EventEmitter::Base(String).new
+    emitter = EventEmitter::Base(String, Nil).new
     flag = 1
     emitter.on "event" do
       flag = 2

@@ -1,5 +1,10 @@
 module EventEmitter
-  class Base(EventType)
+  
+
+  # Generically typed Event Emitter. 
+  # `EventType` is the type of event you are firing/listening on. 
+  # `ListenerArgType` is the type of argument being passed to event listeners.
+  class Base(EventType, ListenerArgType)
     # TODO make recursive types work
     alias Any = Nil |
                 Bool |
@@ -11,10 +16,10 @@ module EventEmitter
                 String
     # Array(Any) |
     # Hash(String, Any)
-    @channels = Hash( EventType, Array(Channel::Unbuffered(Any)) ).new default_value: Array(Channel::Unbuffered(Any)).new
+    @channels = Hash( EventType, Array(Channel::Unbuffered(ListenerArgType)) ).new default_value: Array(Channel::Unbuffered(ListenerArgType)).new
 
     def on(event, block : T ->) forall T
-      channel = Channel::Unbuffered(Any).new
+      channel = Channel::Unbuffered(ListenerArgType).new
       if @channels.has_key? event
         @channels[event] << channel
       else
@@ -29,7 +34,7 @@ module EventEmitter
     end
 
     def on(event, &block)
-      channel = Channel::Unbuffered(Any).new
+      channel = Channel::Unbuffered(ListenerArgType).new
       if @channels.has_key? event
         @channels[event] << channel
       else
@@ -45,7 +50,7 @@ module EventEmitter
     end
 
     def once(event, block : T ->) forall T
-      channel = Channel::Unbuffered(Any).new
+      channel = Channel::Unbuffered(ListenerArgType).new
       if @channels.has_key? event
         @channels[event] << channel
       else
@@ -59,7 +64,7 @@ module EventEmitter
     end
 
     def once(event, &block)
-      channel = Channel::Unbuffered(Any).new
+      channel = Channel::Unbuffered(ListenerArgType).new
       if @channels.has_key? event
         @channels[event] << channel
       else
