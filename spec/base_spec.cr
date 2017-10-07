@@ -67,4 +67,19 @@ describe EventEmitter::Base do
     sleep 100.milliseconds
     flag.should eq(2)
   end
+
+  it "executes one listener with `String`" do  
+    emitter = EventEmitter::Base(String).new
+    flag = 1
+    emitter.on "event" do
+      flag = 2
+    end
+
+    sleep 100.milliseconds
+    emitter.emit "event"
+    sleep 100.milliseconds
+    flag.should eq(2)
+  end
+
+
 end
